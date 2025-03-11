@@ -1,0 +1,9 @@
+p {
+    color: black;
+}
+
+.drop_region {
+    border: 1px solid #aaaaaa;
+    height: 32px;
+    width: 100px;
+}

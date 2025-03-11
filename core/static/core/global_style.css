@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* Global Font Settings */
+body {
+    font-family: "Atkinson Hyperlegible";
+}
+
+/* Colour Palette Variables */
+:root {
+    --bg: #EDEDED;
+    --txt: black;
+    --mid: #F2F2F2;
+    --top: #FDFDFD;
+    --contrast: #403E48;
+    --contrast-txt: white;
+    --pink: #D57EC5;
+    --blue: #4B76D1;
+    --pink-shade: #DC98CF;
+    --blue-shade: #7091D8;
+    --orange: #CD7E3F;
+    --yellow: #F7CF51;
+    --green: #6BCF4C;
+    --aqua: #72DCF9;
+    --light-shadow: #403E4816;
+    --strong-shadow: #403E4820;
+}
