@@ -1,0 +1,76 @@
+#gap-fill-div {
+    display: inline-block;
+    overflow-y: scroll;
+    height: fit-content;
+    max-height: 200px;
+    width: 80%;
+    margin: 0 10% 0 10%;
+    padding: 12px;
+}
+
+#gap-fill-text {
+    display: inline;
+    line-height: 2.5em;
+    font-size: large;
+}
+
+.drop-slot {
+    display: inline-block;
+    justify-items: center;
+    background-color: var(--light-grey);
+    border-radius: 8px;
+    height: 1.7em;
+    width: fit-content;
+    margin: 0 8px -0.65em 8px;
+}
+
+.drop-slot:empty {
+    min-width: 54px;
+}
+
+.drop-slot:last-of-type {
+    margin: 0 4px -0.65em 8px;
+}
+
+.drop-slot > * {
+    /* remove margins from drop items while in slot */
+    margin: 0;
+    box-shadow: none;
+}
+
+.drop-bank {
+    display: inline-block;
+    background-color: var(--blue);
+    border-radius: 8px;
+    min-height: 200px;
+    width: 80%;
+    margin: 32px 10% 0 10%;
+    padding: 16px;
+}
+
+.drop-bank > * {
+    float: left;
+    /* add margins to drop items while in bank */
+    margin: 12px;
+}
+
+.drop-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--smoky-black) 2px 2px;
+    width: fit-content;
+    padding: 4px 8px;
+    line-height: 1.7em;
+}
+
+.drop-item:hover {
+    cursor: grab;
+}
+
+.correct-option {
+    background-color: var(--green);
+    border-radius: 8px;
+    width: fit-content;
+    padding: 4px 8px;
+    line-height: 1.7em;
+}
