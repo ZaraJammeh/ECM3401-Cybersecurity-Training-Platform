@@ -1,13 +1,39 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, HttpResponse, render
+from django.views.decorators.http import require_POST
 
+import json
 import re
 
 from .models import GapFillText, GapFillOption
 
-def active(request, gap_fill_id):
+def get_valid_option_pos_list(option_obj):
+    # extract list of valid gap positions from GapFillOption object
+    valid_pos_str = option_obj.valid_positions_str
+    return valid_pos_str.split(",")
+
+def activity(request, gap_fill_id):
+    print(request.method)
+    
     gap_fill_obj = get_object_or_404(GapFillText, pk=gap_fill_id)
+    options_list = GapFillOption.objects.filter(gap_fill_parent=gap_fill_id)
+    valid_option_positions = [get_valid_option_pos_list(option) for option in options_list]
+
+
     context = {
-        "gap_fill_obj": gap_fill_obj,
-        "text_list": re.split(r"\[.*?\]", gap_fill_obj.text)
+        "text_list": re.split(r"\[.*?\]", gap_fill_obj.text),
+        "options_list": options_list,
     }
-    return render(request, "gap_fill/active.html", context)
+    return render(request, "gap_fill/activity.html", context)
+
+# @require_POST()
+def check(request):
+    request_json = json.load(request)
+    rsp_json = {}
+    for option_id in request_json.keys():
+        # for each option, value = True if its current slot is valid or False if not
+        option_obj = get_object_or_404(GapFillOption, pk=option_id)
+        # add SLOT number, True/False pair to response
+        # enables frontend to easily process correct/incorrect input in slot order
+        rsp_json[request_json[option_id]] = request_json[option_id] in option_obj.valid_positions_str.split(",")
+    print(rsp_json)
+    return HttpResponse(json.dumps(rsp_json), content_type='application/json')

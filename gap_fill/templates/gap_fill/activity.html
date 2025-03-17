@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/global_style.css' %}">
+  <link rel="stylesheet" href="{% static 'gap_fill/activity.css' %}">
+  <script src="{% static 'core/drag_drop.js' %}" async></script>
+  <script src="{% static 'gap_fill/activity.js' %}" async></script>
+  <title>Gap Fill</title>
+</head>
+<body>
+  <!-- Make input checking url accessible to JS -->
+  <input type="hidden" id="check-url" url="{% url 'gap-fill:check' %}" />
+  
+  <h2>Page for gap fill activity</h2>
+  <div id="gap-fill-div">
+    <div id="gap-fill-text">
+      <p>{{text_list.0}}
+      {% if text_list|length %}
+        {% for text_block in text_list|slice:"1:" %}
+          <span class="drop-slot" id="slot-{{forloop.counter}}" ondrop="drop(event)" ondragover="allowDrop(event)"></span>
+          {{text_block}}
+        {% endfor %}
+      {% endif %}
+      </p>
+    </div>
+  </div>
+  
+  <ul class="drop-bank" ondrop="drop(event)" ondragover="allowDrop(event)">
+    {% for option in options_list %}
+      <p class="drop-item" id="option-{{option.pk}}" draggable="true" ondragstart="drag(event)">{{ option }}</p>
+    {% endfor %}
+  </ul>
+  <button onclick="check_input()">Check</button>
+</body>
