@@ -6,6 +6,17 @@ class GapFillOptionInline(admin.TabularInline):
     model = GapFillOption
     extra = 3
 
-class GapFillTextInline(admin.ModelAdmin):
+class GapFillTextAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (
+            "Activity Details",
+            {"classes": ["collapse"], "fields":["estim_min_duration", "estim_max_duration", "tags"]}
+        ),
+        (
+            "Gap Fill Text",
+            {"fields":["text"]}
+        ),
+    ]
     inlines = [GapFillOptionInline]
-admin.site.register(GapFillText, GapFillTextInline)
+    
+admin.site.register(GapFillText, GapFillTextAdmin)

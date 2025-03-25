@@ -20,5 +20,6 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("home.urls")),
+    path("activity-map", include("activity_map.urls")),
     path("gap-fill/", include("gap_fill.urls")),
 ]
