@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'home.apps.HomeConfig',
+    'activity_map.apps.ActivityMapConfig',
     'gap_fill.apps.GapFillConfig',
 ]
 
