@@ -15,8 +15,26 @@ function getCookie(name) {
     return cookieValue;
 }
 
-const check_url = document.getElementById("check-url").getAttribute("url")
-const option_elems = document.getElementsByClassName("drop-item");
+var check_url;
+var option_elems;
+var score_elem;
+var count_elem;
+var true_score = 0;
+var display_score = 0;
+var combo_counter = 0;
+var correct_count = 0;
+
+// fetch DOM links
+window.onload = function() {
+    what();
+    function what() {
+        check_url = document.getElementById("check-url").getAttribute("url");
+        option_elems = document.getElementsByClassName("drop-item");
+        score_elem = document.getElementById("score");
+        count_elem = document.getElementById("count");
+    }
+    
+};
 
 async function check_input() {
     option_arr = Array.from(option_elems);
@@ -44,11 +62,17 @@ async function check_input() {
         option = document.getElementById("slot-"+slot_num).firstChild;
         if (results[slot_num] === true) {
             // if slot contains correct option, mark option as correct and disable its drag and drop
-            option.setAttribute("draggable", "false")
-            option.classList.remove("drop-item")
-            option.classList.add("correct-option")
+            option.setAttribute("draggable", "false");
+            option.classList.remove("drop-item");
+            option.classList.add("correct-option");
+            true_score += 20 + 5 * combo_counter;
+            combo_counter++;
+            score_elem.innerHTML = String(true_score);
+            correct_count ++;
+            count_elem.innerHTML = String(correct_count);
         }
 
     })
+    combo_counter = 0;
 }
     

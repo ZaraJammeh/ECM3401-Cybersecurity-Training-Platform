@@ -1,14 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 /* Global Font Settings */
-body {
+* {
     font-family: "Atkinson Hyperlegible";
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 /* Colour Palette Variables */
 :root {
     --blue: #36517F;
+    --desat-blue: #526484;
     --cyan: #38AECC;
+    --light-cyan: #72bacc;
     --orange: #EA9010;
     --red: #D33F49;
     --green: #7CB518;
