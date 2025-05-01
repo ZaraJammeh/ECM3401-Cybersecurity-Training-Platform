@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/global_style.css' %}">
+  <title>Info Pages Panel</title>
+</head>
+<body>
+  <div class="pages-panel">
+    <h2 id="panel-title">Panel Title</h2>
+    <div class="dots">
+      {% for page in pages|length %}
+      <span class="page-selector-dot">{{forloop.counter}}</span>
+      {% endfor %}
+    </div>
+    <div class="page"></div>
+    <!-- Prev and next buttons with left and right arrows -->
+    <button>&#x25C0 Prev</button>
+    <button>&#x25B6 Next</button>
+  </div>
+</body>

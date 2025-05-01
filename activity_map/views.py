@@ -4,7 +4,7 @@ from django.urls import reverse
 from core.models import Activity, ActivityTag
 
 def activity_map(request):
-    activity_pool = Activity.objects.filter(tags__name="email")
+    activity_pool = Activity.objects.filter(subtopics__subtopic_num="1")
     # query above should never lead to none because only valid tags should be selectable
     # TODO include topic "complexity" in tags (i.e. beginner/intermediate/advanced)
     activity1 = activity_pool[0]

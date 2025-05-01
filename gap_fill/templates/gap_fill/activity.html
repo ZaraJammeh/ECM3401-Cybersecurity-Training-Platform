@@ -9,28 +9,50 @@
   <script src="{% static 'gap_fill/activity.js' %}" async></script>
   <title>Gap Fill</title>
 </head>
-<body>
+<body>  
   <!-- Make input checking url accessible to JS -->
   <input type="hidden" id="check-url" url="{% url 'gap-fill:check' %}" />
-  
-  <h2>Page for gap fill activity</h2>
-  <div id="gap-fill-div">
-    <div id="gap-fill-text">
-      <p>{{text_list.0}}
-      {% if text_list|length %}
-        {% for text_block in text_list|slice:"1:" %}
-          <span class="drop-slot" id="slot-{{forloop.counter}}" ondrop="drop(event)" ondragover="allowDrop(event)"></span>
-          {{text_block}}
+
+  {% include "../core/navbar.html" %} 
+
+  <div id="main">
+    <span class="activity-header">
+      <h1>Drag and drop the missing words into the correct gaps</h1>
+    </span>
+    <div id="gap-fill-left">
+      <div id="gap-fill-div">
+        <div id="gap-fill-text">
+          <p>{{text_list.0}}
+          {% if text_list|length %}
+            {% for text_block in text_list|slice:"1:" %}
+              <span class="drop-slot" id="slot-{{forloop.counter}}" ondrop="drop(event)" ondragover="allowDrop(event)"></span>
+              {{text_block}}
+            {% endfor %}
+          {% endif %}
+          </p>
+        </div>
+      </div>
+      <ul class="drop-bank" ondrop="drop(event)" ondragover="allowDrop(event)">
+        {% for option in options_list %}
+          <p class="drop-item" id="option-{{option.pk}}" draggable="true" ondragstart="drag(event)">{{ option }}</p>
         {% endfor %}
-      {% endif %}
-      </p>
+      </ul>
+    </div>
+    <div id="gap-fill-top-right">
+      <h3>Score: </h3>
+      <h2 id="score">0</h2>
+      <h1><span id="count">0</span>/{{ options_list|length }}</h1>
+    </div>
+    <div id="gap-fill-bot-right">
+      <button id="check-answers" onclick="check_input()">Check my answers</button>
     </div>
   </div>
-  
-  <ul class="drop-bank" ondrop="drop(event)" ondragover="allowDrop(event)">
-    {% for option in options_list %}
-      <p class="drop-item" id="option-{{option.pk}}" draggable="true" ondragstart="drag(event)">{{ option }}</p>
-    {% endfor %}
-  </ul>
-  <button onclick="check_input()">Check</button>
+  <div id="results-popup" style="visibility: hidden;">
+    <span class="top-banner">
+        <button onclick="closeWithoutBuying()">X</button>
+    </span>
+    <p id="popup-item-price"></p>
+    <button id="buy-button" onclick="buyAndClose()">Buy!</button>
+</div>
+  <span id="scoring-fx"></span>
 </body>

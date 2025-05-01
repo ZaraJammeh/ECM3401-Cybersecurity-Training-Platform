@@ -10,7 +10,9 @@ class GapFillTextAdmin(admin.ModelAdmin):
     fieldsets = [
         (
             "Activity Details",
-            {"classes": ["collapse"], "fields":["estim_min_duration", "estim_max_duration", "tags"]}
+            {"classes": ["collapse"],
+             "fields":["estim_min_duration", "estim_max_duration"]
+            }
         ),
         (
             "Gap Fill Text",

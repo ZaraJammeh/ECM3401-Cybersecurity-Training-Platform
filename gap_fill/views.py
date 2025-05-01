@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, HttpResponse, render
 from django.views.decorators.http import require_POST
 
 import json
+import random
 import re
 
 from .models import GapFillText, GapFillOption
@@ -12,13 +13,10 @@ def get_valid_option_pos_list(option_obj):
     return valid_pos_str.split(",")
 
 def activity(request, gap_fill_id):
-    print(request.method)
-    
     gap_fill_obj = get_object_or_404(GapFillText, pk=gap_fill_id)
-    options_list = GapFillOption.objects.filter(gap_fill_parent=gap_fill_id)
-    valid_option_positions = [get_valid_option_pos_list(option) for option in options_list]
-
-
+    options_list = list(GapFillOption.objects.filter(gap_fill_parent=gap_fill_id))
+    # randomise options' order of appearance
+    random.shuffle(options_list)
     context = {
         "text_list": re.split(r"\[.*?\]", gap_fill_obj.text),
         "options_list": options_list,
