@@ -8,14 +8,25 @@ nav {
     font-weight: bold;
 }
 
-nav > a {
-    float: left;
-    border-right: 2px solid var(--med-grey);
-    border-radius: 12px 12px 0 0 ;
+nav > * {
+    border-radius: 12px 12px 0 0;
     padding: 0 24px 0 24px;
     line-height: 48px;
+}
+
+a {
     color: black;
     text-decoration: none;
+}
+
+.nav-left {
+    float: left;
+    border-right: 2px solid var(--med-grey);
+}
+
+.nav-right {
+    float: right;
+    border-left: 2px solid var(--med-grey);
 }
 
 .icon {
@@ -30,6 +41,10 @@ nav > a {
     width: 28px;
 }
 
+#sign-out-link > img {
+    margin-top: -2px;
+}
+
 #dashboard-link:hover {
     background: var(--orange);
 }
@@ -37,3 +52,8 @@ nav > a {
 #map-link:hover {
     background: var(--cyan);
 }
+
+#sign-out-form:hover {
+    background: var(--med-grey);
+}
+

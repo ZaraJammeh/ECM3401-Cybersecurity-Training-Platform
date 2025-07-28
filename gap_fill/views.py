@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, HttpResponse, render
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 import json
 import random
@@ -12,6 +13,7 @@ def get_valid_option_pos_list(option_obj):
     valid_pos_str = option_obj.valid_positions_str
     return valid_pos_str.split(",")
 
+@login_required
 def activity(request, gap_fill_id):
     gap_fill_obj = get_object_or_404(GapFillText, pk=gap_fill_id)
     options_list = list(GapFillOption.objects.filter(gap_fill_parent=gap_fill_id))
