@@ -18,12 +18,10 @@
           <span class="error">{{ value }}</span>
         {% endfor %}
       </div>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </button>
     </div>
     {% endif %}
-    <div
+    {{ form }}
     <button type="submit">Log In</button>
+    <a href="{% url 'password_reset' %}">Forgotten your password?</a>
   </form>
 </body>

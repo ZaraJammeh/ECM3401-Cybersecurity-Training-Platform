@@ -15,7 +15,8 @@
     </a>
     <a href="{% url 'activity_map:activity_map' %}" class="nav-left" id="map-link">
       <img src="{% static 'core/image_assets/icons_and_emojis/map.png' %}"
-      alt="activity map icon"  class="icon">Activity Map</a>
+      alt="activity map icon"  class="icon">Activity Map
+    </a>
     <form action="{% url 'logout' %}" method="post" class="nav-right" id="sign-out-form">
       {% csrf_token %}
       <a href="#sign-out-link" onclick="this.parentNode.submit();" id="sign-out-link">
@@ -23,5 +24,14 @@
         alt="sign out icon" class="icon">Sign Out
       </a>
     </form>
+
+    <!-- Link to admin site if user has staff perms -->
+    {% if user.is_staff %}
+      <a href="{% url 'admin:index' %}" class="nav-right" id="admin-link">
+        <img src="{% static 'core/image_assets/icons_and_emojis/wrench.png' %}"
+        alt="admin site icon (wrench)" class="icon">Admin Site
+      </a>
+    {% endif %}
+
   </nav>
 </body>

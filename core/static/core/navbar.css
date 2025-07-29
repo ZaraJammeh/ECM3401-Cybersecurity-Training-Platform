@@ -57,3 +57,7 @@ a {
     background: var(--med-grey);
 }
 
+#admin-link:hover {
+    background: var(--blue);
+    color: white;
+}
