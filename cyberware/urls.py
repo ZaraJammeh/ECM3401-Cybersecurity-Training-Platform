@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    # note that while "accounts" is used for urls, the app name is "user_systems"
+    path("accounts/", include("user_systems.urls")),
+    path("accounts/", include("django.contrib.auth.urls")),
     path("", include("home.urls")),
     path("activity-map", include("activity_map.urls")),
     path("gap-fill/", include("gap_fill.urls")),

@@ -1,9 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/global_style.css' %}">
+  <link rel="stylesheet" href="{% static 'home/index.css' %}">
   <title>Landing Page</title>
 </head>
 <body> 
-  <h1>This will be the landing page</h1>
+  {% if user.is_authenticated %}
+    <h2>Hi {{ user.username }}!</h2>
+  {% else %}
+    <main>
+      <h2 id="welcome-msg">Welcome to Cyberware</h2>
+      <p>Level up your cybersecurity awareness with safety advice and educational games for all learners!</p>
+      <div id="get-started-block">
+        <a href="{% url 'login' %}">Log In</a>
+        <h1>or</h1>
+        <a href="{% url 'signup' %}">Sign Up</a>
+        <h3>to get started!</h3>
+      </div>
+      
+    </main>
+  {% endif %}
 </body>

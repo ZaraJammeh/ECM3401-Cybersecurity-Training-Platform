@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/global_style.css' %}">
+  <title>Login</title>
+</head>
+<body>
+  <h2>Log In</h2>
+  <form method="post">
+    {% csrf_token %}
+    <!-- Display any form errors if present -->
+    {% if form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        {% for key, value in form.errors.items %}
+          <span class="error">{{ value }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    {{ form }}
+    <button type="submit">Log In</button>
+    <a href="{% url 'password_reset' %}">Forgotten your password?</a>
+  </form>
+</body>
