@@ -8,5 +8,7 @@
 </head>
 <body>
   {% include "../core/navbar.html" %} 
-  <h1>Dashboard placeholder</h1>
+  <h1>Welcome back!</h1>
+  <h2>View your learning progress below or {{ header_text }}</h2>
+  <a href="{% url 'activity_map:activity_map' %}">Activity Map</a>
 </body>
